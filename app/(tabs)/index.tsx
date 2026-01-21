@@ -1,98 +1,105 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from "react-native";
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import ParallaxScrollView from "@/components/parallax-scroll-view";
+import { Colors, Fonts } from "@/constants/theme";
 
 export default function HomeScreen() {
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerBackgroundColor={{
+        light: Colors.light.primary,
+        dark: Colors.dark.primary,
+      }}
       headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+        <View style={styles.headerContent}>
+          <Text style={styles.headerTitle}>Contli</Text>
+          <Text style={styles.headerSubtitle}>
+            Controle simples das contas dos seus clientes
+          </Text>
+        </View>
+      }
+    >
+      {/* Card principal */}
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>Total em aberto</Text>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
+        <Text style={styles.cardValue}>R$ 1.250,00</Text>
+
+        <Text style={styles.cardDescription}>
+          Valor total que seus clientes ainda têm para pagar.
+        </Text>
+      </View>
+
+      {/* Texto informativo */}
+      <View style={styles.infoBox}>
+        <Text style={styles.infoText}>
+          Aqui você poderá cadastrar clientes, acompanhar pagamentos e evitar
+          esquecimentos no controle das contas.
+        </Text>
+      </View>
     </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  headerContent: {
+    height: 160,
+    justifyContent: "center",
+    paddingHorizontal: 24,
   },
-  stepContainer: {
-    gap: 8,
+
+  headerTitle: {
+    color: "#FFFFFF",
+    fontSize: 32,
+    fontFamily: Fonts.textBold,
+  },
+
+  headerSubtitle: {
+    color: "#FFFFFF",
+    fontSize: 14,
+    marginTop: 4,
+    fontFamily: Fonts.text,
+  },
+
+  card: {
+    backgroundColor: Colors.light.surface,
+    borderRadius: 12,
+    padding: 20,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: Colors.light.border,
+  },
+
+  cardTitle: {
+    fontSize: 14,
+    color: Colors.light.textSecondary,
+    fontFamily: Fonts.text,
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+
+  cardValue: {
+    fontSize: 28,
+    color: Colors.light.primary,
+    fontFamily: Fonts.numbersBold,
+    marginBottom: 8,
+  },
+
+  cardDescription: {
+    fontSize: 13,
+    color: Colors.light.textSecondary,
+    fontFamily: Fonts.text,
+  },
+
+  infoBox: {
+    backgroundColor: Colors.light.background,
+    padding: 16,
+    borderRadius: 8,
+  },
+
+  infoText: {
+    fontSize: 14,
+    color: Colors.light.textPrimary,
+    fontFamily: Fonts.text,
+    lineHeight: 20,
   },
 });
