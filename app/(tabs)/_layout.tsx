@@ -1,33 +1,49 @@
-import { Tabs } from 'expo-router';
+import { Tabs, usePathname, useRouter } from 'expo-router';
 import React from 'react';
-
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { NavBar } from '@/components/ui/navbar';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const getCurrentRoute = (): string => {
+    if (pathname === '/' || pathname.includes('/index')) return 'home';
+    if (pathname.includes('/clients')) return 'clients';
+    if (pathname.includes('/moviment')) return 'moviment';
+    if (pathname.includes('/record')) return 'record';
+    if (pathname.includes('/settings')) return 'settings';
+    return 'home';
+  };
+
+  const handleNavigate = (route: string) => {
+    const routeMap: { [key: string]: string } = {
+      home: '/(tabs)/',
+      clients: '/(tabs)/clients',
+      moviment: '/(tabs)/moviment',
+      record: '/(tabs)/record',
+      settings: '/(tabs)/settings',
+    };
+    router.push(routeMap[route] as any);
+  };
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
+      }}
+      tabBar={() => (
+        <NavBar currentRoute={getCurrentRoute()} onNavigate={handleNavigate} />
+      )}
+    >
+      <Tabs.Screen name="index" />
+      <Tabs.Screen name="clients" />
+      <Tabs.Screen name="moviment" />
+      <Tabs.Screen name="record" />
+      <Tabs.Screen name="settings" />
       <Tabs.Screen
         name="explore"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          href: null,
         }}
       />
     </Tabs>
