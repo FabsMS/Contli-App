@@ -1,16 +1,17 @@
-import { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  KeyboardAvoidingView,
-  Platform,
-} from "react-native";
+import { Input } from "@/components/ui/input";
+import { Colors, Fonts } from "@/constants/theme";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
-import { Colors, Fonts } from "@/constants/theme";
+import { useState } from "react";
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -28,8 +29,11 @@ export default function LoginScreen() {
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      <View style={styles.content}>
-        {/* Logo e textos no topo */}
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        keyboardShouldPersistTaps="handled"
+      >
+        {/* Logo e título Contli */}
         <View style={styles.header}>
           <Image
             source={require("@/assets/icons/icon-contli.svg")}
@@ -38,41 +42,32 @@ export default function LoginScreen() {
           />
           <Image
             source={require("@/assets/images/title-contli.svg")}
-            style={styles.title}
-            contentFit="contain"
-          />
-          <Image
-            source={require("@/assets/images/subtitle-contli.svg")}
-            style={styles.subtitle}
+            style={styles.titleImage}
             contentFit="contain"
           />
         </View>
 
         {/* Formulário de login */}
         <View style={styles.form}>
-          <Text style={styles.formTitle}>Entrar</Text>
-          <Text style={styles.formSubtitle}>Controle simples, contas em dia</Text>
+          <Text style={styles.title}>Entrar</Text>
+          <Text style={styles.subtitle}>Controle simples, contas em dia</Text>
 
-          <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel}>📧 Seu email</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="seu@email.com"
-              placeholderTextColor={Colors.light.textSecondary}
+          <View style={styles.inputsContainer}>
+            <Input
+              iconSource={require("@/assets/icons/icon-email.svg")}
+              placeholder="Seu email"
               value={email}
               onChangeText={setEmail}
               keyboardType="email-address"
               autoCapitalize="none"
               autoComplete="email"
             />
-          </View>
 
-          <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel}>🔒 Sua Senha</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="••••••••"
-              placeholderTextColor={Colors.light.textSecondary}
+            <View style={styles.inputSpacing} />
+
+            <Input
+              iconSource={require("@/assets/icons/icon-password.svg")}
+              placeholder="Sua Senha"
               value={password}
               onChangeText={setPassword}
               secureTextEntry
@@ -84,18 +79,22 @@ export default function LoginScreen() {
             <Text style={styles.loginButtonText}>Entrar</Text>
           </TouchableOpacity>
 
-          <View style={styles.footer}>
-            <Text style={styles.footerText}>Ainda não tem uma conta? </Text>
+          <View style={styles.signupContainer}>
+            <Text style={styles.signupText}>Ainda não tem uma conta? </Text>
             <TouchableOpacity>
-              <Text style={styles.footerLink}>Cadastrar a sua loja</Text>
+              <Text style={styles.signupLink}>Cadastrar a sua loja</Text>
             </TouchableOpacity>
           </View>
+        </View>
 
-          <TouchableOpacity style={styles.forgotPassword}>
-            <Text style={styles.forgotPasswordText}>Esqueceu sua senha? Clique aqui</Text>
+        {/* Esqueceu a senha - parte inferior */}
+        <View style={styles.footer}>
+          <Text style={styles.forgotPasswordText}>Esqueceu sua senha? </Text>
+          <TouchableOpacity>
+            <Text style={styles.forgotPasswordLink}>Clique aqui</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 }
@@ -105,98 +104,94 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.light.background,
   },
-  content: {
-    flex: 1,
+  scrollContent: {
+    flexGrow: 1,
     paddingHorizontal: 24,
-  },
-  header: {
-    alignItems: "center",
-    paddingTop: 60,
+    paddingTop: 70,
     paddingBottom: 40,
   },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 100,
+    gap: 12,
+  },
   logo: {
-    width: 80,
-    height: 80,
-    marginBottom: 16,
+    width: 60,
+    height: 60,
   },
-  title: {
-    width: 140,
-    height: 40,
-    marginBottom: 8,
-  },
-  subtitle: {
-    width: 180,
-    height: 20,
+  titleImage: {
+    width: 100,
+    height: 28,
   },
   form: {
     flex: 1,
   },
-  formTitle: {
+  title: {
     fontSize: 32,
     fontFamily: Fonts.textBold,
     color: Colors.light.textPrimary,
     marginBottom: 4,
+    textAlign: "center",
   },
-  formSubtitle: {
-    fontSize: 14,
+  subtitle: {
+    fontSize: 16,
     fontFamily: Fonts.text,
     color: Colors.light.textSecondary,
     marginBottom: 32,
+    textAlign: "center",
   },
-  inputContainer: {
-    marginBottom: 20,
+  inputsContainer: {
+    marginBottom: 24,
   },
-  inputLabel: {
-    fontSize: 14,
-    fontFamily: Fonts.text,
-    color: Colors.light.textPrimary,
-    marginBottom: 8,
-  },
-  input: {
-    backgroundColor: Colors.light.surface,
-    borderRadius: 8,
-    padding: 16,
-    fontSize: 16,
-    fontFamily: Fonts.text,
-    color: Colors.light.textPrimary,
-    borderWidth: 1,
-    borderColor: Colors.light.border,
+  inputSpacing: {
+    height: 16,
   },
   loginButton: {
     backgroundColor: Colors.light.primary,
     borderRadius: 8,
-    padding: 16,
+    paddingVertical: 16,
     alignItems: "center",
-    marginTop: 12,
+    marginBottom: 20,
   },
   loginButtonText: {
     color: "#FFFFFF",
     fontSize: 16,
     fontFamily: Fonts.textBold,
   },
-  footer: {
+  signupContainer: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 24,
   },
-  footerText: {
+  signupText: {
     fontSize: 14,
     fontFamily: Fonts.text,
     color: Colors.light.textSecondary,
   },
-  footerLink: {
+  signupLink: {
     fontSize: 14,
     fontFamily: Fonts.textBold,
+    fontWeight: "700",
     color: Colors.light.primary,
   },
-  forgotPassword: {
+  footer: {
+    flexDirection: "row",
+    justifyContent: "center",
     alignItems: "center",
-    marginTop: 16,
+    marginTop: "auto",
+    paddingTop: 24,
   },
   forgotPasswordText: {
-    fontSize: 13,
+    fontSize: 14,
     fontFamily: Fonts.text,
+    color: Colors.light.textSecondary,
+  },
+  forgotPasswordLink: {
+    fontSize: 14,
+    fontFamily: Fonts.textBold,
+    fontWeight: "700",
     color: Colors.light.primary,
   },
 });
