@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { scaleFont, moderateScale } from "@/utils/responsive";
 
 export default function SettingsScreen() {
   const router = useRouter();
@@ -116,7 +117,7 @@ export default function SettingsScreen() {
           <View style={styles.avatarContainer}>
             <Ionicons
               name="person"
-              size={40}
+              size={moderateScale(35)}
               color={Colors.light.textSecondary}
             />
           </View>
@@ -125,7 +126,7 @@ export default function SettingsScreen() {
           <View style={styles.storeTag}>
             <Ionicons
               name="storefront-outline"
-              size={16}
+              size={moderateScale(14)}
               color={Colors.light.primary}
             />
             <Text style={styles.storeText}>{userData.storeName}</Text>
@@ -161,7 +162,7 @@ export default function SettingsScreen() {
             activeOpacity={0.7}
           >
             <View style={styles.iconContainer}>
-              <Ionicons name="shield-checkmark-outline" size={24} color="#FFFFFF" />
+              <Ionicons name="shield-checkmark-outline" size={moderateScale(22)} color="#FFFFFF" />
             </View>
             <View style={styles.textContainer}>
               <Text style={styles.cardTitleWhite}>PIN e Biometria</Text>
@@ -169,7 +170,7 @@ export default function SettingsScreen() {
                 Proteja o app com PIN ou impressão digital
               </Text>
             </View>
-            <Ionicons name="chevron-forward" size={20} color="#FFFFFF" />
+            <Ionicons name="chevron-forward" size={moderateScale(18)} color="#FFFFFF" />
           </TouchableOpacity>
         </View>
 
@@ -185,7 +186,7 @@ export default function SettingsScreen() {
             <View style={styles.iconContainer}>
               <Ionicons
                 name="notifications-outline"
-                size={24}
+                size={moderateScale(22)}
                 color="#FFFFFF"
               />
             </View>
@@ -195,7 +196,7 @@ export default function SettingsScreen() {
                 Configure alertas e lembretes
               </Text>
             </View>
-            <Ionicons name="chevron-forward" size={20} color="#FFFFFF" />
+            <Ionicons name="chevron-forward" size={moderateScale(18)} color="#FFFFFF" />
           </TouchableOpacity>
         </View>
 
@@ -218,7 +219,7 @@ export default function SettingsScreen() {
             activeOpacity={0.7}
           >
             <View style={styles.iconContainer}>
-              <Ionicons name="logo-whatsapp" size={24} color="#FFFFFF" />
+              <Ionicons name="logo-whatsapp" size={moderateScale(22)} color="#FFFFFF" />
             </View>
             <View style={styles.textContainer}>
               <Text style={styles.cardTitleWhite}>WhatsApp</Text>
@@ -226,7 +227,7 @@ export default function SettingsScreen() {
                 Envie cobranças e lembretes automáticos
               </Text>
             </View>
-            <Ionicons name="chevron-forward" size={20} color="#FFFFFF" />
+            <Ionicons name="chevron-forward" size={moderateScale(18)} color="#FFFFFF" />
           </TouchableOpacity>
         </View>
 
@@ -252,7 +253,7 @@ export default function SettingsScreen() {
             <View style={styles.iconContainerNeutral}>
               <Ionicons
                 name="help-circle-outline"
-                size={24}
+                size={moderateScale(22)}
                 color={Colors.light.primary}
               />
             </View>
@@ -264,7 +265,7 @@ export default function SettingsScreen() {
             </View>
             <Ionicons
               name="chevron-forward"
-              size={20}
+              size={moderateScale(18)}
               color={Colors.light.textSecondary}
             />
           </TouchableOpacity>
@@ -281,7 +282,7 @@ export default function SettingsScreen() {
             <View style={styles.iconContainerNeutral}>
               <Ionicons
                 name="document-text-outline"
-                size={24}
+                size={moderateScale(22)}
                 color={Colors.light.primary}
               />
             </View>
@@ -291,7 +292,7 @@ export default function SettingsScreen() {
             </View>
             <Ionicons
               name="chevron-forward"
-              size={20}
+              size={moderateScale(18)}
               color={Colors.light.textSecondary}
             />
           </TouchableOpacity>
@@ -305,7 +306,7 @@ export default function SettingsScreen() {
         >
           <Ionicons
             name="log-out-outline"
-            size={20}
+            size={moderateScale(18)}
             color={Colors.light.error}
           />
           <Text style={styles.logoutText}>Sair da Conta</Text>
@@ -324,64 +325,64 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.light.background,
   },
   content: {
-    padding: 24,
-    paddingTop: 80,
+    padding: moderateScale(20),
+    paddingTop: moderateScale(60),
   },
   header: {
     alignItems: "center",
-    marginBottom: 32,
+    marginBottom: moderateScale(28),
   },
   avatarContainer: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
+    width: moderateScale(70),
+    height: moderateScale(70),
+    borderRadius: moderateScale(35),
     backgroundColor: Colors.light.surface,
     borderWidth: 2,
     borderColor: Colors.light.border,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 16,
+    marginBottom: moderateScale(14),
   },
   userName: {
-    fontSize: 24,
+    fontSize: scaleFont(22),
     fontFamily: Fonts.textBold,
     color: Colors.light.textPrimary,
-    marginBottom: 4,
+    marginBottom: moderateScale(4),
   },
   userEmail: {
-    fontSize: 14,
+    fontSize: scaleFont(13),
     fontFamily: Fonts.text,
     color: Colors.light.textSecondary,
-    marginBottom: 12,
+    marginBottom: moderateScale(10),
   },
   storeTag: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: Colors.light.surface,
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 20,
-    gap: 6,
+    paddingHorizontal: moderateScale(14),
+    paddingVertical: moderateScale(7),
+    borderRadius: moderateScale(18),
+    gap: moderateScale(5),
     borderWidth: 1,
     borderColor: Colors.light.border,
   },
   storeText: {
-    fontSize: 14,
+    fontSize: scaleFont(13),
     fontFamily: Fonts.textMedium,
     color: Colors.light.primary,
   },
   sectionTitle: {
-    fontSize: 20,
+    fontSize: scaleFont(18),
     fontFamily: Fonts.textBold,
     color: Colors.light.textPrimary,
-    marginTop: 24,
-    marginBottom: 16,
+    marginTop: moderateScale(20),
+    marginBottom: moderateScale(14),
   },
   cardSpacing: {
-    height: 12,
+    height: moderateScale(10),
   },
   notificationCard: {
-    borderRadius: 12,
+    borderRadius: moderateScale(12),
     backgroundColor: Colors.light.primary,
     // Sombra para iOS
     shadowColor: "#000",
@@ -397,10 +398,10 @@ const styles = StyleSheet.create({
   notificationCardContent: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 16,
+    padding: moderateScale(14),
   },
   securityCard: {
-    borderRadius: 12,
+    borderRadius: moderateScale(12),
     backgroundColor: "#8B5CF6",
     // Sombra para iOS
     shadowColor: "#000",
@@ -416,10 +417,10 @@ const styles = StyleSheet.create({
   securityCardContent: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 16,
+    padding: moderateScale(14),
   },
   whatsappCard: {
-    borderRadius: 12,
+    borderRadius: moderateScale(12),
     backgroundColor: "#25D366",
     // Sombra para iOS
     shadowColor: "#000",
@@ -435,10 +436,10 @@ const styles = StyleSheet.create({
   whatsappCardContent: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 16,
+    padding: moderateScale(14),
   },
   helpCard: {
-    borderRadius: 12,
+    borderRadius: moderateScale(12),
     backgroundColor: Colors.light.surface,
     borderWidth: 1,
     borderColor: Colors.light.border,
@@ -446,48 +447,48 @@ const styles = StyleSheet.create({
   helpCardContent: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 16,
+    padding: moderateScale(14),
   },
   iconContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: moderateScale(44),
+    height: moderateScale(44),
+    borderRadius: moderateScale(22),
     backgroundColor: "rgba(255, 255, 255, 0.2)",
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 12,
+    marginRight: moderateScale(12),
   },
   iconContainerNeutral: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: moderateScale(44),
+    height: moderateScale(44),
+    borderRadius: moderateScale(22),
     backgroundColor: Colors.light.background,
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 12,
+    marginRight: moderateScale(12),
   },
   textContainer: {
     flex: 1,
   },
   cardTitle: {
-    fontSize: 16,
+    fontSize: scaleFont(15),
     fontFamily: Fonts.textBold,
     color: Colors.light.textPrimary,
-    marginBottom: 2,
+    marginBottom: moderateScale(2),
   },
   cardTitleWhite: {
-    fontSize: 16,
+    fontSize: scaleFont(15),
     fontFamily: Fonts.textBold,
     color: "#FFFFFF",
-    marginBottom: 2,
+    marginBottom: moderateScale(2),
   },
   cardSubtitle: {
-    fontSize: 14,
+    fontSize: scaleFont(13),
     fontFamily: Fonts.text,
     color: Colors.light.textSecondary,
   },
   cardSubtitleWhite: {
-    fontSize: 14,
+    fontSize: scaleFont(13),
     fontFamily: Fonts.text,
     color: "#FFFFFF",
     opacity: 0.9,
@@ -497,25 +498,25 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: Colors.light.surface,
-    borderRadius: 12,
-    paddingVertical: 16,
-    paddingHorizontal: 20,
-    marginTop: 32,
-    gap: 8,
+    borderRadius: moderateScale(12),
+    paddingVertical: moderateScale(14),
+    paddingHorizontal: moderateScale(18),
+    marginTop: moderateScale(28),
+    gap: moderateScale(7),
     borderWidth: 1,
     borderColor: Colors.light.border,
   },
   logoutText: {
-    fontSize: 16,
+    fontSize: scaleFont(15),
     fontFamily: Fonts.textBold,
     color: Colors.light.error,
   },
   versionText: {
-    fontSize: 12,
+    fontSize: scaleFont(11),
     fontFamily: Fonts.text,
     color: Colors.light.textSecondary,
     textAlign: "center",
-    marginTop: 24,
-    marginBottom: 16,
+    marginTop: moderateScale(20),
+    marginBottom: moderateScale(14),
   },
 });

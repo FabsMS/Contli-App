@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import { Colors, Fonts } from "@/constants/theme";
+import { scaleFont, moderateScale } from "@/utils/responsive";
 
 interface SummaryCardProps {
   title: string;
@@ -22,8 +23,8 @@ export function SummaryCard({ title, value, variant }: SummaryCardProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderRadius: 16,
-    padding: 20,
+    borderRadius: moderateScale(14),
+    padding: moderateScale(16),
     // Sombra para iOS
     shadowColor: "#000",
     shadowOffset: {
@@ -36,14 +37,14 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   title: {
-    fontSize: 14,
+    fontSize: scaleFont(13),
     fontFamily: Fonts.text,
     color: "#FFFFFF",
-    marginBottom: 8,
+    marginBottom: moderateScale(6),
     opacity: 0.9,
   },
   value: {
-    fontSize: 24,
+    fontSize: scaleFont(20),
     fontFamily: Fonts.numbersBold,
     color: "#FFFFFF",
   },

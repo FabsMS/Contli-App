@@ -1,4 +1,5 @@
 import { Colors, Fonts } from "@/constants/theme";
+import { moderateScale } from "@/utils/responsive";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Svg, { Path } from "react-native-svg";
@@ -8,7 +9,12 @@ interface IconProps {
 }
 
 const HomeIcon = ({ color }: IconProps) => (
-  <Svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+  <Svg
+    width={moderateScale(20)}
+    height={moderateScale(20)}
+    viewBox="0 0 25 25"
+    fill="none"
+  >
     <Path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -19,7 +25,12 @@ const HomeIcon = ({ color }: IconProps) => (
 );
 
 const ClientsIcon = ({ color }: IconProps) => (
-  <Svg width="21" height="25" viewBox="0 0 21 25" fill="none">
+  <Svg
+    width={moderateScale(20)}
+    height={moderateScale(20)}
+    viewBox="0 0 21 25"
+    fill="none"
+  >
     <Path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -30,7 +41,12 @@ const ClientsIcon = ({ color }: IconProps) => (
 );
 
 const MovimentIcon = ({ color }: IconProps) => (
-  <Svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+  <Svg
+    width={moderateScale(20)}
+    height={moderateScale(20)}
+    viewBox="0 0 25 25"
+    fill="none"
+  >
     <Path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -41,7 +57,12 @@ const MovimentIcon = ({ color }: IconProps) => (
 );
 
 const RecordIcon = ({ color }: IconProps) => (
-  <Svg width="33" height="25" viewBox="0 0 33 25" fill="none">
+  <Svg
+    width={moderateScale(20)}
+    height={moderateScale(20)}
+    viewBox="0 0 33 25"
+    fill="none"
+  >
     <Path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -52,7 +73,12 @@ const RecordIcon = ({ color }: IconProps) => (
 );
 
 const SettingsIcon = ({ color }: IconProps) => (
-  <Svg width="25" height="25" viewBox="0 0 25 25" fill="none">
+  <Svg
+    width={moderateScale(20)}
+    height={moderateScale(20)}
+    viewBox="0 0 25 25"
+    fill="none"
+  >
     <Path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -118,7 +144,7 @@ export const NavBar = ({ currentRoute = "home", onNavigate }: NavBarProps) => {
       />
       <NavItem
         icon={<MovimentIcon color={getIconColor("moviment")} />}
-        label="Movimentar"
+        label="Adicionar"
         focused={currentRoute === "moviment"}
         onPress={() => handlePress("moviment")}
       />

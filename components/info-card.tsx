@@ -2,6 +2,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Image } from "expo-image";
 import { Colors, Fonts } from "@/constants/theme";
 import { Ionicons } from "@expo/vector-icons";
+import { scaleFont, moderateScale } from "@/utils/responsive";
 
 interface InfoCardProps {
   iconSource: any;
@@ -31,7 +32,7 @@ export function InfoCard({
       </View>
       <Ionicons
         name="chevron-forward"
-        size={20}
+        size={moderateScale(18)}
         color={Colors.light.textSecondary}
       />
     </TouchableOpacity>
@@ -43,36 +44,36 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: Colors.light.surface,
-    borderRadius: 12,
-    padding: 16,
+    borderRadius: moderateScale(12),
+    padding: moderateScale(14),
     borderWidth: 1,
     borderColor: Colors.light.border,
   },
   iconContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: moderateScale(44),
+    height: moderateScale(44),
+    borderRadius: moderateScale(22),
     backgroundColor: Colors.light.secondary,
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 12,
+    marginRight: moderateScale(12),
   },
   icon: {
-    width: 24,
-    height: 24,
+    width: moderateScale(22),
+    height: moderateScale(22),
     tintColor: "#FFFFFF",
   },
   textContainer: {
     flex: 1,
   },
   title: {
-    fontSize: 16,
+    fontSize: scaleFont(15),
     fontFamily: Fonts.textBold,
     color: Colors.light.textPrimary,
-    marginBottom: 2,
+    marginBottom: moderateScale(2),
   },
   subtitle: {
-    fontSize: 14,
+    fontSize: scaleFont(13),
     fontFamily: Fonts.text,
     color: Colors.light.textSecondary,
   },

@@ -4,6 +4,7 @@ import { Colors, Fonts } from "@/constants/theme";
 import { SummaryCard } from "@/components/summary-card";
 import { InfoCard } from "@/components/info-card";
 import { QuickActionButton } from "@/components/quick-action-button";
+import { scaleFont, moderateScale } from "@/utils/responsive";
 
 export default function HomeScreen() {
   return (
@@ -84,48 +85,48 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.light.background,
   },
   content: {
-    padding: 24,
-    paddingTop: 60,
+    padding: moderateScale(20),
+    paddingTop: moderateScale(50),
   },
   header: {
     alignItems: "center",
-    marginBottom: 12,
+    marginBottom: moderateScale(10),
   },
   logo: {
-    width: 60,
-    height: 60,
+    width: moderateScale(55),
+    height: moderateScale(55),
   },
   title: {
-    fontSize: 32,
+    fontSize: scaleFont(28),
     fontFamily: Fonts.textBold,
     color: Colors.light.textPrimary,
     textAlign: "center",
-    marginBottom: 4,
+    marginBottom: moderateScale(4),
   },
   subtitle: {
-    fontSize: 14,
+    fontSize: scaleFont(13),
     fontFamily: Fonts.text,
     color: Colors.light.textSecondary,
     textAlign: "center",
-    marginBottom: 32,
+    marginBottom: moderateScale(28),
   },
   summaryContainer: {
     flexDirection: "row",
-    marginBottom: 20,
+    marginBottom: moderateScale(16),
   },
   cardSpacing: {
-    width: 12,
+    width: moderateScale(10),
   },
   sectionTitle: {
-    fontSize: 20,
+    fontSize: scaleFont(18),
     fontFamily: Fonts.textBold,
     color: Colors.light.textPrimary,
-    marginTop: 24,
-    marginBottom: 16,
+    marginTop: moderateScale(20),
+    marginBottom: moderateScale(14),
   },
   quickActionsRow: {
     flexDirection: "row",
-    marginBottom: 12,
+    marginBottom: moderateScale(10),
   },
   quickActionHalf: {
     flex: 1,

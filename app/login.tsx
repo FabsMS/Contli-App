@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { scaleFont, moderateScale } from "@/utils/responsive";
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -110,54 +111,54 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
-    paddingHorizontal: 24,
-    paddingTop: 70,
-    paddingBottom: 40,
+    paddingHorizontal: moderateScale(20),
+    paddingTop: moderateScale(50),
+    paddingBottom: moderateScale(30),
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 100,
-    gap: 12,
+    marginBottom: moderateScale(70),
+    gap: moderateScale(10),
   },
   logo: {
-    width: 60,
-    height: 60,
+    width: moderateScale(55),
+    height: moderateScale(55),
   },
   titleImage: {
-    width: 100,
-    height: 28,
+    width: moderateScale(90),
+    height: moderateScale(25),
   },
   form: {
     flex: 1,
   },
   title: {
-    fontSize: 40,
+    fontSize: scaleFont(32),
     fontFamily: Fonts.textBold,
     color: Colors.light.textPrimary,
-    marginBottom: 4,
+    marginBottom: moderateScale(4),
     textAlign: "center",
   },
   subtitle: {
-    fontSize: 18,
+    fontSize: scaleFont(16),
     fontFamily: Fonts.text,
     color: Colors.light.textSecondary,
-    marginBottom: 32,
+    marginBottom: moderateScale(28),
     textAlign: "center",
   },
   inputsContainer: {
-    marginBottom: 24,
+    marginBottom: moderateScale(20),
   },
   inputSpacing: {
-    height: 16,
+    height: moderateScale(14),
   },
   loginButton: {
     backgroundColor: Colors.light.primary,
-    borderRadius: 20,
-    paddingVertical: 16,
+    borderRadius: moderateScale(18),
+    paddingVertical: moderateScale(14),
     alignItems: "center",
-    marginBottom: 20,
+    marginBottom: moderateScale(18),
     // Sombra para iOS
     shadowColor: "#000",
     shadowOffset: {
@@ -171,22 +172,22 @@ const styles = StyleSheet.create({
   },
   loginButtonText: {
     color: "#FFFFFF",
-    fontSize: 18,
+    fontSize: scaleFont(16),
     fontFamily: Fonts.textBold,
   },
   signupContainer: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    gap: 5,
+    gap: moderateScale(4),
   },
   signupText: {
-    fontSize: 16,
+    fontSize: scaleFont(14),
     fontFamily: Fonts.text,
     color: Colors.light.textSecondary,
   },
   signupLink: {
-    fontSize: 16,
+    fontSize: scaleFont(14),
     fontFamily: Fonts.textBold,
     fontWeight: "700",
     color: Colors.light.primary,
@@ -196,15 +197,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: "auto",
-    paddingTop: 24,
+    paddingTop: moderateScale(20),
   },
   forgotPasswordText: {
-    fontSize: 16,
+    fontSize: scaleFont(14),
     fontFamily: Fonts.text,
     color: Colors.light.textSecondary,
   },
   forgotPasswordLink: {
-    fontSize: 16,
+    fontSize: scaleFont(14),
     fontFamily: Fonts.textBold,
     fontWeight: "700",
     color: Colors.light.primary,

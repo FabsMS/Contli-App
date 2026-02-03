@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { scaleFont, moderateScale } from "@/utils/responsive";
 
 export default function SignupScreen() {
   const router = useRouter();
@@ -136,54 +137,54 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
-    paddingHorizontal: 24,
-    paddingTop: 70,
-    paddingBottom: 40,
+    paddingHorizontal: moderateScale(20),
+    paddingTop: moderateScale(50),
+    paddingBottom: moderateScale(30),
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 60,
-    gap: 12,
+    marginBottom: moderateScale(50),
+    gap: moderateScale(10),
   },
   logo: {
-    width: 60,
-    height: 60,
+    width: moderateScale(55),
+    height: moderateScale(55),
   },
   titleImage: {
-    width: 100,
-    height: 28,
+    width: moderateScale(90),
+    height: moderateScale(25),
   },
   form: {
     flex: 1,
   },
   title: {
-    fontSize: 40,
+    fontSize: scaleFont(32),
     fontFamily: Fonts.textBold,
     color: Colors.light.textPrimary,
-    marginBottom: 4,
+    marginBottom: moderateScale(4),
     textAlign: "center",
   },
   subtitle: {
-    fontSize: 18,
+    fontSize: scaleFont(16),
     fontFamily: Fonts.text,
     color: Colors.light.textSecondary,
-    marginBottom: 32,
+    marginBottom: moderateScale(28),
     textAlign: "center",
   },
   inputsContainer: {
-    marginBottom: 24,
+    marginBottom: moderateScale(20),
   },
   inputSpacing: {
-    height: 16,
+    height: moderateScale(14),
   },
   signupButton: {
     backgroundColor: Colors.light.secondary,
-    borderRadius: 20,
-    paddingVertical: 16,
+    borderRadius: moderateScale(18),
+    paddingVertical: moderateScale(14),
     alignItems: "center",
-    marginBottom: 20,
+    marginBottom: moderateScale(18),
     // Sombra para iOS
     shadowColor: "#000",
     shadowOffset: {
@@ -197,7 +198,7 @@ const styles = StyleSheet.create({
   },
   signupButtonText: {
     color: "#FFFFFF",
-    fontSize: 18,
+    fontSize: scaleFont(16),
     fontFamily: Fonts.textBold,
   },
   loginContainer: {
@@ -206,12 +207,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   loginText: {
-    fontSize: 16,
+    fontSize: scaleFont(14),
     fontFamily: Fonts.text,
     color: Colors.light.textSecondary,
   },
   loginLink: {
-    fontSize: 16,
+    fontSize: scaleFont(14),
     fontFamily: Fonts.textBold,
     fontWeight: "700",
     color: Colors.light.primary,

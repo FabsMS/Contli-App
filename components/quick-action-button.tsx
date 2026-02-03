@@ -2,6 +2,7 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import { Colors, Fonts } from "@/constants/theme";
 import { Ionicons } from "@expo/vector-icons";
+import { scaleFont, moderateScale } from "@/utils/responsive";
 
 interface QuickActionButtonProps {
   label: string;
@@ -36,7 +37,7 @@ export function QuickActionButton({
       {icon === "add" && (
         <Ionicons
           name="add"
-          size={24}
+          size={moderateScale(22)}
           color={textColor}
           style={styles.iconLeft}
         />
@@ -61,9 +62,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 12,
-    paddingVertical: 16,
-    paddingHorizontal: 20,
+    borderRadius: moderateScale(12),
+    paddingVertical: moderateScale(14),
+    paddingHorizontal: moderateScale(16),
     // Sombra para iOS
     shadowColor: "#000",
     shadowOffset: {
@@ -76,15 +77,15 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   iconLeft: {
-    marginRight: 8,
+    marginRight: moderateScale(7),
   },
   customIcon: {
-    width: 20,
-    height: 20,
-    marginRight: 8,
+    width: moderateScale(18),
+    height: moderateScale(18),
+    marginRight: moderateScale(7),
   },
   label: {
-    fontSize: 16,
+    fontSize: scaleFont(15),
     fontFamily: Fonts.text,
   },
 });

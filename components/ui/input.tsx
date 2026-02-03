@@ -2,6 +2,7 @@ import { Colors, Fonts } from "@/constants/theme";
 import { Image } from "expo-image";
 import { useState } from "react";
 import { StyleSheet, TextInput, TextInputProps, View } from "react-native";
+import { scaleFont, moderateScale } from "@/utils/responsive";
 
 interface InputProps extends TextInputProps {
   iconSource: any;
@@ -31,23 +32,23 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: Colors.light.surface,
-    borderRadius: 14,
+    borderRadius: moderateScale(12),
     borderWidth: 1,
     borderColor: Colors.light.border,
-    paddingHorizontal: 16,
-    paddingVertical: 14,
+    paddingHorizontal: moderateScale(14),
+    paddingVertical: moderateScale(12),
   },
   containerFocused: {
     borderColor: Colors.light.primary,
   },
   icon: {
-    width: 20,
-    height: 20,
-    marginRight: 12,
+    width: moderateScale(18),
+    height: moderateScale(18),
+    marginRight: moderateScale(10),
   },
   input: {
     flex: 1,
-    fontSize: 16,
+    fontSize: scaleFont(15),
     fontFamily: Fonts.text,
     color: Colors.light.textPrimary,
   },
