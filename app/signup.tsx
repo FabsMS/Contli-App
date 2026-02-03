@@ -13,19 +13,22 @@ import {
   View,
 } from "react-native";
 
-export default function LoginScreen() {
+export default function SignupScreen() {
   const router = useRouter();
+  const [storeName, setStoreName] = useState("");
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleLogin = () => {
-    // Aqui você implementará a lógica de login
+  const handleSignup = () => {
+    // Aqui você implementará a lógica de cadastro
     // Por enquanto, apenas navega para a home
     router.replace("/(tabs)");
   };
 
-  const handleGoToSignup = () => {
-    router.push("/signup");
+  const handleGoToLogin = () => {
+    router.push("/login");
   };
 
   return (
@@ -51,12 +54,32 @@ export default function LoginScreen() {
           />
         </View>
 
-        {/* Formulário de login */}
+        {/* Formulário de cadastro */}
         <View style={styles.form}>
-          <Text style={styles.title}>Entrar</Text>
+          <Text style={styles.title}>Cadastrar sua Loja</Text>
           <Text style={styles.subtitle}>Controle simples, contas em dia</Text>
 
           <View style={styles.inputsContainer}>
+            <Input
+              iconSource={require("@/assets/icons/icon-store-name.svg")}
+              placeholder="Nome da Loja"
+              value={storeName}
+              onChangeText={setStoreName}
+              autoCapitalize="words"
+            />
+
+            <View style={styles.inputSpacing} />
+
+            <Input
+              iconSource={require("@/assets/icons/icon-user-name.svg")}
+              placeholder="Seu nome"
+              value={userName}
+              onChangeText={setUserName}
+              autoCapitalize="words"
+            />
+
+            <View style={styles.inputSpacing} />
+
             <Input
               iconSource={require("@/assets/icons/icon-email.svg")}
               placeholder="Seu email"
@@ -71,32 +94,35 @@ export default function LoginScreen() {
 
             <Input
               iconSource={require("@/assets/icons/icon-password.svg")}
-              placeholder="Sua Senha"
+              placeholder="Crie sua senha"
               value={password}
               onChangeText={setPassword}
               secureTextEntry
               autoComplete="password"
             />
+
+            <View style={styles.inputSpacing} />
+
+            <Input
+              iconSource={require("@/assets/icons/icon-password.svg")}
+              placeholder="Repita a sua senha"
+              value={confirmPassword}
+              onChangeText={setConfirmPassword}
+              secureTextEntry
+              autoComplete="password"
+            />
           </View>
 
-          <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-            <Text style={styles.loginButtonText}>Entrar</Text>
+          <TouchableOpacity style={styles.signupButton} onPress={handleSignup}>
+            <Text style={styles.signupButtonText}>Cadastrar</Text>
           </TouchableOpacity>
 
-          <View style={styles.signupContainer}>
-            <Text style={styles.signupText}>Ainda não tem uma conta? </Text>
-            <TouchableOpacity onPress={handleGoToSignup}>
-              <Text style={styles.signupLink}>Cadastrar a sua loja</Text>
+          <View style={styles.loginContainer}>
+            <Text style={styles.loginText}>Já tem uma conta? </Text>
+            <TouchableOpacity onPress={handleGoToLogin}>
+              <Text style={styles.loginLink}>Entrar</Text>
             </TouchableOpacity>
           </View>
-        </View>
-
-        {/* Esqueceu a senha - parte inferior */}
-        <View style={styles.footer}>
-          <Text style={styles.forgotPasswordText}>Esqueceu sua senha? </Text>
-          <TouchableOpacity>
-            <Text style={styles.forgotPasswordLink}>Clique aqui</Text>
-          </TouchableOpacity>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
@@ -118,7 +144,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 100,
+    marginBottom: 60,
     gap: 12,
   },
   logo: {
@@ -152,8 +178,8 @@ const styles = StyleSheet.create({
   inputSpacing: {
     height: 16,
   },
-  loginButton: {
-    backgroundColor: Colors.light.primary,
+  signupButton: {
+    backgroundColor: Colors.light.secondary,
     borderRadius: 20,
     paddingVertical: 16,
     alignItems: "center",
@@ -169,41 +195,22 @@ const styles = StyleSheet.create({
     // Sombra para Android
     elevation: 4,
   },
-  loginButtonText: {
+  signupButtonText: {
     color: "#FFFFFF",
     fontSize: 18,
     fontFamily: Fonts.textBold,
   },
-  signupContainer: {
+  loginContainer: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    gap: 5,
   },
-  signupText: {
+  loginText: {
     fontSize: 16,
     fontFamily: Fonts.text,
     color: Colors.light.textSecondary,
   },
-  signupLink: {
-    fontSize: 16,
-    fontFamily: Fonts.textBold,
-    fontWeight: "700",
-    color: Colors.light.primary,
-  },
-  footer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: "auto",
-    paddingTop: 24,
-  },
-  forgotPasswordText: {
-    fontSize: 16,
-    fontFamily: Fonts.text,
-    color: Colors.light.textSecondary,
-  },
-  forgotPasswordLink: {
+  loginLink: {
     fontSize: 16,
     fontFamily: Fonts.textBold,
     fontWeight: "700",

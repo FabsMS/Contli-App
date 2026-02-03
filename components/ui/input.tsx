@@ -1,13 +1,7 @@
-import { useState } from "react";
-import {
-  View,
-  TextInput,
-  StyleSheet,
-  TextInputProps,
-  TouchableOpacity,
-} from "react-native";
-import { Image } from "expo-image";
 import { Colors, Fonts } from "@/constants/theme";
+import { Image } from "expo-image";
+import { useState } from "react";
+import { StyleSheet, TextInput, TextInputProps, View } from "react-native";
 
 interface InputProps extends TextInputProps {
   iconSource: any;
@@ -18,12 +12,7 @@ export function Input({ iconSource, placeholder, ...props }: InputProps) {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <View
-      style={[
-        styles.container,
-        isFocused && styles.containerFocused,
-      ]}
-    >
+    <View style={[styles.container, isFocused && styles.containerFocused]}>
       <Image source={iconSource} style={styles.icon} contentFit="contain" />
       <TextInput
         style={styles.input}
@@ -42,7 +31,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: Colors.light.surface,
-    borderRadius: 8,
+    borderRadius: 14,
     borderWidth: 1,
     borderColor: Colors.light.border,
     paddingHorizontal: 16,

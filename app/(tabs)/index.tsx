@@ -1,105 +1,133 @@
-import { StyleSheet, Text, View } from "react-native";
-
-import ParallaxScrollView from "@/components/parallax-scroll-view";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Image } from "expo-image";
 import { Colors, Fonts } from "@/constants/theme";
+import { SummaryCard } from "@/components/summary-card";
+import { InfoCard } from "@/components/info-card";
+import { QuickActionButton } from "@/components/quick-action-button";
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{
-        light: Colors.light.primary,
-        dark: Colors.dark.primary,
-      }}
-      headerImage={
-        <View style={styles.headerContent}>
-          <Text style={styles.headerTitle}>Contli</Text>
-          <Text style={styles.headerSubtitle}>
-            Controle simples das contas dos seus clientes
-          </Text>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <View style={styles.content}>
+        {/* Header */}
+        <View style={styles.header}>
+          <Image
+            source={require("@/assets/icons/icon-contli.svg")}
+            style={styles.logo}
+            contentFit="contain"
+          />
         </View>
-      }
-    >
-      {/* Card principal */}
-      <View style={styles.card}>
-        <Text style={styles.cardTitle}>Total em aberto</Text>
 
-        <Text style={styles.cardValue}>R$ 1.250,00</Text>
+        <Text style={styles.title}>Contli</Text>
+        <Text style={styles.subtitle}>Controle simples, contas em dia</Text>
 
-        <Text style={styles.cardDescription}>
-          Valor total que seus clientes ainda têm para pagar.
-        </Text>
+        {/* Summary Cards */}
+        <View style={styles.summaryContainer}>
+          <SummaryCard
+            title="Total em Aberto"
+            value="R$ 2.450,00"
+            variant="primary"
+          />
+          <View style={styles.cardSpacing} />
+          <SummaryCard
+            title="Total Recebido (no mês)"
+            value="R$ 1.320,00"
+            variant="secondary"
+          />
+        </View>
+
+        {/* Info Card */}
+        <InfoCard
+          iconSource={require("@/assets/icons/icon-peoples.svg")}
+          title="Clientes devendo"
+          subtitle="5 clientes"
+          onPress={() => console.log("Ver clientes devendo")}
+        />
+
+        {/* Quick Actions */}
+        <Text style={styles.sectionTitle}>Ações Rápidas</Text>
+
+        <View style={styles.quickActionsRow}>
+          <View style={styles.quickActionHalf}>
+            <QuickActionButton
+              label="Nova Dívida"
+              variant="primary"
+              icon="add"
+              onPress={() => console.log("Nova Dívida")}
+            />
+          </View>
+          <View style={styles.cardSpacing} />
+          <View style={styles.quickActionHalf}>
+            <QuickActionButton
+              label="Novo Pagamento"
+              variant="secondary"
+              iconSource={require("@/assets/icons/icon-payment.svg")}
+              onPress={() => console.log("Novo Pagamento")}
+            />
+          </View>
+        </View>
+
+        <QuickActionButton
+          label="Novo Cliente"
+          variant="neutral"
+          icon="add"
+          onPress={() => console.log("Novo Cliente")}
+        />
       </View>
-
-      {/* Texto informativo */}
-      <View style={styles.infoBox}>
-        <Text style={styles.infoText}>
-          Aqui você poderá cadastrar clientes, acompanhar pagamentos e evitar
-          esquecimentos no controle das contas.
-        </Text>
-      </View>
-    </ParallaxScrollView>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  headerContent: {
-    height: 160,
-    justifyContent: "center",
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
+    backgroundColor: Colors.light.background,
   },
-
-  headerTitle: {
-    color: "#FFFFFF",
+  content: {
+    padding: 24,
+    paddingTop: 60,
+  },
+  header: {
+    alignItems: "center",
+    marginBottom: 12,
+  },
+  logo: {
+    width: 60,
+    height: 60,
+  },
+  title: {
     fontSize: 32,
     fontFamily: Fonts.textBold,
-  },
-
-  headerSubtitle: {
-    color: "#FFFFFF",
-    fontSize: 14,
-    marginTop: 4,
-    fontFamily: Fonts.text,
-  },
-
-  card: {
-    backgroundColor: Colors.light.surface,
-    borderRadius: 12,
-    padding: 20,
-    marginBottom: 16,
-    borderWidth: 1,
-    borderColor: Colors.light.border,
-  },
-
-  cardTitle: {
-    fontSize: 14,
-    color: Colors.light.textSecondary,
-    fontFamily: Fonts.text,
-    marginBottom: 8,
-  },
-
-  cardValue: {
-    fontSize: 28,
-    color: Colors.light.primary,
-    fontFamily: Fonts.numbersBold,
-    marginBottom: 8,
-  },
-
-  cardDescription: {
-    fontSize: 13,
-    color: Colors.light.textSecondary,
-    fontFamily: Fonts.text,
-  },
-
-  infoBox: {
-    backgroundColor: Colors.light.background,
-    padding: 16,
-    borderRadius: 8,
-  },
-
-  infoText: {
-    fontSize: 14,
     color: Colors.light.textPrimary,
+    textAlign: "center",
+    marginBottom: 4,
+  },
+  subtitle: {
+    fontSize: 14,
     fontFamily: Fonts.text,
-    lineHeight: 20,
+    color: Colors.light.textSecondary,
+    textAlign: "center",
+    marginBottom: 32,
+  },
+  summaryContainer: {
+    flexDirection: "row",
+    marginBottom: 20,
+  },
+  cardSpacing: {
+    width: 12,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontFamily: Fonts.textBold,
+    color: Colors.light.textPrimary,
+    marginTop: 24,
+    marginBottom: 16,
+  },
+  quickActionsRow: {
+    flexDirection: "row",
+    marginBottom: 12,
+  },
+  quickActionHalf: {
+    flex: 1,
   },
 });
