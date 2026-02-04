@@ -5,8 +5,29 @@ import { SummaryCard } from "@/components/summary-card";
 import { InfoCard } from "@/components/info-card";
 import { QuickActionButton } from "@/components/quick-action-button";
 import { scaleFont, moderateScale } from "@/utils/responsive";
+import { useRouter } from "expo-router";
 
 export default function HomeScreen() {
+  const router = useRouter();
+
+  const handleNewDebt = () => {
+    router.push({
+      pathname: "/(tabs)/moviment",
+      params: { mode: "debt" },
+    });
+  };
+
+  const handleNewPayment = () => {
+    router.push({
+      pathname: "/(tabs)/moviment",
+      params: { mode: "payment" },
+    });
+  };
+
+  const handleNewClient = () => {
+    router.push("/new-client");
+  };
+
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.content}>
@@ -54,7 +75,7 @@ export default function HomeScreen() {
               label="Nova Dívida"
               variant="primary"
               icon="add"
-              onPress={() => console.log("Nova Dívida")}
+              onPress={handleNewDebt}
             />
           </View>
           <View style={styles.cardSpacing} />
@@ -63,7 +84,7 @@ export default function HomeScreen() {
               label="Novo Pagamento"
               variant="secondary"
               iconSource={require("@/assets/icons/icon-payment.svg")}
-              onPress={() => console.log("Novo Pagamento")}
+              onPress={handleNewPayment}
             />
           </View>
         </View>
@@ -72,7 +93,7 @@ export default function HomeScreen() {
           label="Novo Cliente"
           variant="neutral"
           icon="add"
-          onPress={() => console.log("Novo Cliente")}
+          onPress={handleNewClient}
         />
       </View>
     </ScrollView>

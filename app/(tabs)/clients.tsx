@@ -3,23 +3,14 @@ import {
   FlatList,
   StyleSheet,
   Text,
-  TextInput,
   View,
-  TouchableOpacity,
 } from "react-native";
 import { Colors, Fonts } from "@/constants/theme";
 import { ClientListItem, ClientData } from "@/components/client-list-item";
 import { scaleFont, moderateScale } from "@/utils/responsive";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-
-// Função para remover acentos e normalizar texto
-const removeAccents = (text: string): string => {
-  return text
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase();
-};
+import { SearchBar, removeAccents } from "@/components/search-bar";
 
 // Dados mockados para demonstração
 const MOCK_CLIENTS: ClientData[] = [
@@ -121,29 +112,12 @@ export default function ClientsScreen() {
     () => (
       <View style={styles.header}>
         {/* Search Input */}
-        <View style={styles.searchContainer}>
-          <Ionicons
-            name="search"
-            size={moderateScale(18)}
-            color={Colors.light.textSecondary}
-            style={styles.searchIcon}
-          />
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Buscar cliente..."
-            placeholderTextColor={Colors.light.textSecondary}
+        <View style={styles.searchWrapper}>
+          <SearchBar
             value={searchQuery}
             onChangeText={setSearchQuery}
+            placeholder="Buscar cliente..."
           />
-          {searchQuery.length > 0 && (
-            <TouchableOpacity onPress={() => setSearchQuery("")}>
-              <Ionicons
-                name="close-circle"
-                size={moderateScale(18)}
-                color={Colors.light.textSecondary}
-              />
-            </TouchableOpacity>
-          )}
         </View>
 
         {/* Summary */}
@@ -242,25 +216,8 @@ const styles = StyleSheet.create({
   header: {
     marginBottom: moderateScale(20),
   },
-  searchContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: Colors.light.surface,
-    borderRadius: moderateScale(12),
-    borderWidth: 1,
-    borderColor: Colors.light.border,
-    paddingHorizontal: moderateScale(14),
-    paddingVertical: moderateScale(12),
+  searchWrapper: {
     marginBottom: moderateScale(16),
-  },
-  searchIcon: {
-    marginRight: moderateScale(10),
-  },
-  searchInput: {
-    flex: 1,
-    fontSize: scaleFont(15),
-    fontFamily: Fonts.text,
-    color: Colors.light.textPrimary,
   },
   summaryContainer: {
     flexDirection: "row",
