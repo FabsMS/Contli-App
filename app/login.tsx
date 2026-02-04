@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Colors, Fonts } from "@/constants/theme";
+import { moderateScale, scaleFont } from "@/utils/responsive";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { useState } from "react";
@@ -12,7 +13,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { scaleFont, moderateScale } from "@/utils/responsive";
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -112,14 +112,14 @@ const styles = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
     paddingHorizontal: moderateScale(20),
-    paddingTop: moderateScale(50),
+    paddingTop: moderateScale(60),
     paddingBottom: moderateScale(30),
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: moderateScale(70),
+    marginBottom: moderateScale(90),
     gap: moderateScale(10),
   },
   logo: {
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    gap: moderateScale(4),
+    gap: moderateScale(2),
   },
   signupText: {
     fontSize: scaleFont(14),
